@@ -1,7 +1,7 @@
-import React from 'react';
+import React frm 'react';
 
-const NoResults = () => (
-    <h3>No results found. Please try a new search.</h3>
+const NotFound = () => (
+    <h3>Sorry, the page you requested cannot be found</h3>
 );
 
-export default NoResults;
+export default NotFound;
