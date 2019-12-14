@@ -1,24 +1,16 @@
-import React, {Component} from 'react'
-import {NavLink, withRouter} from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+class Nav = props => (
 
-class Nav extends Component {
-
-    handleRoute = text => {
-        
-    }
-
-
-    render() {
-        return (
-            <header>
-                <ul className="main-nav">
-                    <li><NavLink to "/"></NavLink></li>
-                    <li><NavLink to "/"></NavLink></li>
-                    <li><NavLink to "/"></NavLink></li>
+    <div>
+         <nav className="main-nav">
+                <ul>
+                    <li onClick={props.onNavClick}><NavLink to="/nav/lightning">Lightning</NavLink></li>
+                    <li onClick={props.onNavClick}><NavLink to="/nav/crystals">Crystals</NavLink></li>
+                    <li onClick={props.onNavClick}><NavLink to="/nav/gnomes"></NavLink>Gnomes</li>
                 </ul>
-            </header>
-        );
-    }
-}
+         </nav>
+    </div>
+);
 
-export default withRouter(Nav);
+export default Nav;
