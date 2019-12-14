@@ -1,33 +1,26 @@
-import React, { PureComponent } from 'react';
-import { withRouter } from 'react-router-dom'
+import React from 'react';
 import Photo from './Photo';
-import NoReults from './NoResults';
 
-class Gallery extends PureComponent {
-    componentDidMount = () => {
-        this.props.history.listen(location => this.props.search(location.pathname.replace(/[^\w\s]/gi, '').replace("search", '')));
-        this.props.search(this.props.text);
-}
+const Gallery = (props) {
 
-render() {
-    const results = this.props.data;
-    let gallery;
-    if(results.length) {
-        gallery = results.map(photo =>
-            <Photo key={photo.id} url={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_n.jpg`} pathId={photo.id}/>    
-        );
-    } else {
-        gallery = <NoResults/>
-    }
+    const results = props.data;
+    let images = results.map(image =>
+        <Photo url={`https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`} key={image.id} />
+    );
 
-    return (
-        <ul className="photo-list">
-            {this.props.loading ? <h3>Loading image gallery...</h3> : gallery}
-
-        </ul>
+    return(
+        <div className="photo-container">
+            <h2>{props.title}</h2>
+            <ul>
+            {results.length === 0 ?
+                <li className="not-found">
+                    <h3>Results not found</h3>
+                    <p>Sorry, we did not find any results to match your query.</p>
+                </li>
+                    : images}             
+            </ul>
+        </div>
     );
 }
 
-}//end 
-
-export default withRouter(Gallery);
+export default Gallery;
